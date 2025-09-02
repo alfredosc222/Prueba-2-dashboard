@@ -12,6 +12,3 @@ streamlit-aggrid
 streamlit_option_menu
 yfinance
 typing_extensions
-
-
-
