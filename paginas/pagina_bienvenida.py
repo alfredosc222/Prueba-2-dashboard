@@ -19,14 +19,14 @@ def render():
     col_info, col_sesion = st.columns([3, 1], gap="large")
 
     with col_info:
-        theme.render_header("Herramienta Interactiva")
-        st.markdown("""
+        theme.render_header("Herramienta para la evaluación del LCOE en tecnologías undimotrices")
+        theme.render_text("""
         
         El propósito de esta herramienta es estructurar y evaluar la viabilidad financiera de proyectos undimotrices, aplicando un marco metodológico estandarizado, producto de la investigación académica del autor.
 
-        Para ello, se realiza una evaluación financiera integral centrada en el cálculo del Costo Nivelado de la Energía Eléctrica (LCOE). El modelo se basa en proyecciones de variables macroeconómicas obtenidas de modelos estadísticos y econométricos, permitiendo al usuario definir parámetros clave del proyecto, como el horizonte de análisis. Adicionalmente, la plataforma incluye un análisis de sensibilidad para identificar los factores de mayor impacto en cada etapa del desarrollo del proyecto.
+        Para ello, se realiza una evaluación financiera integral centrada en el cálculo del **costo nivelado de la energía eléctrica (LCOE)**. El modelo se basa en proyecciones de variables macroeconómicas obtenidas de modelos estadísticos y econométricos, permitiendo al usuario definir parámetros clave del proyecto, como el horizonte de análisis. Adicionalmente, la plataforma incluye un análisis de sensibilidad para identificar los factores de mayor impacto en cada etapa del desarrollo del proyecto.
         
-        La base central de esta herramienta es su análisis adaptativo, donde el Nivel de Madurez Tecnológica (TRL) actúa como eje para definir la metodología con la que se evaluará la tecnología. Partiendo de que una única fórmula de LCOE es insuficiente para las distintas fases de desarrollo, la plataforma aplica uno de los tres modelos específicos. A su vez, en la etapa avanzada (TRL 7-9), el análisis se complementa con la evaluación del Nivel de Rendimiento Tecnológico (TPL) para medir la competitividad y la preparación comercial, ofreciendo así una visión integral de la viabilidad del proyecto (TRL-TPL-LCOE).
+        La base central de esta herramienta es su análisis adaptativo, donde el **nivel de madurez tecnológica (TRL)** actúa como eje para definir la metodología con la que se evaluará la tecnología. Partiendo de que una única fórmula de LCOE es insuficiente para las distintas fases de desarrollo, la plataforma aplica uno de los tres modelos específicos. A su vez, en la etapa avanzada (TRL 7-9), el análisis se complementa con la evaluación del **nivel de rendimiento tecnológico (TPL)** para medir la competitividad y la preparación comercial, ofreciendo así una visión integral de la viabilidad del proyecto **TRL-TPL-LCOE**.
         
         Los modelos propuestos son los siguientes:
         - **TRL 1-3 (Prototipo undimotriz)**: Estimación preliminar basada en costos de componentes, prototipado y pruebas de laboratorio.
@@ -34,6 +34,7 @@ def render():
         - **TRL 7-9 (Granja de dispositivos undimotrices - WEF)**: Proyección a nivel de granja comercial que incorpora economías de escala, costos de interconexión y operación a largo plazo.
         
         Finalmente, la herramienta incluye módulos para la planificación del despliegue: un componente geoespacial para evaluar el recurso energético y una hoja de ruta con los hitos regulatorios clave en México.
+                          
         Le invitamos a iniciar su evaluación. El menú principal está diseñado como un flujo de trabajo para guiarlo en la construcción de un análisis detallado y confiable para su proyecto.
         """)
 
@@ -91,4 +92,5 @@ def render():
                 file_name=nombre_archivo_sesion,
                 mime="application/octet-stream",
                 use_container_width=True
+
             )
