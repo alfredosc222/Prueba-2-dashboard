@@ -116,23 +116,23 @@ def render():
 
 
             kpis_promedios = {
-                "embi base": f"{promedios_embi['Base']:.2f}%",
-                "embi alto": f"{promedios_embi['Positivo']:.2f}%",
-                "embi bajo": f"{promedios_embi['Negativo']:.2f}%"
+                "Base": f"{promedios_embi['Base']:.2f}%",
+                "EMBI alto": f"{promedios_embi['Positivo']:.2f}%",
+                "EMBI bajo": f"{promedios_embi['Negativo']:.2f}%"
             }
             
-            components.display_kpi_resumen("Resumen: Valor de D/(D+E)", kpis_promedios)
+            components.display_kpi_resumen("Resumen: Valor de riesgo país", kpis_promedios)
 
         else:
-            st.write("Aún no se ha generado la simulación para D/(D+E).")
+            st.write("Aún no se ha generado la simulación para riesgo país.")
 
         if 'resultados_embi' in st.session_state and st.session_state['resultados_embi'] is not None:
             resultados_embi = st.session_state['resultados_embi']
 
             df_para_descarga = pd.DataFrame({
-                'embi base': resultados_embi['escenario_base'],
-                'embi alto':resultados_embi['escenario_positivo'],
-                'embi bajo': resultados_embi['escenario_negativo']
+                'Base': resultados_embi['escenario_base'],
+                'EMBI alto':resultados_embi['escenario_positivo'],
+                'EMBI bajo': resultados_embi['escenario_negativo']
             })
             
             components.display_download_button(df_descarga=df_para_descarga, nombre_archivo='proyeccion_EMBI.csv',)
@@ -144,13 +144,14 @@ def render():
     with col_beta:
             
         if 'resultados_beta' in st.session_state and st.session_state['resultados_beta'] is not None:
-            promedios_beta = st.session_state['resultados_beta']['promedios']
+            resultados = st.session_state['resultados_beta']
+
 
 
             kpis_promedios = {
-                "Base": f"{promedios_beta['Base_anual']:.2f}%",
-                "Positivo": f"{promedios_beta['Positivo_anual']:.2f}%",
-                "Negativo": f"{promedios_beta['Negativo_anual']:.2f}%"
+                "Base": f"{resultados['promedios']['Base']:.2f}",
+                "Riesgo bajo": f"{resultados['promedios']['Positivo']:.2f}",
+                "Riesgo alto": f"{resultados['promedios']['Negativo']:.2f}",
             }
             
             components.display_kpi_resumen("Resumen: Valor de beta desapalancada", kpis_promedios)
@@ -163,8 +164,8 @@ def render():
 
             df_para_descarga = pd.DataFrame({
                 'Base': resultados_beta['base'],
-                'Positivo':resultados_beta['positivo'],
-                'Negativo': resultados_beta['negativo']
+                'Riesgo bajo':resultados_beta['positivo'],
+                'Riesgo alto': resultados_beta['negativo']
             })
             
             components.display_download_button(df_descarga=df_para_descarga, nombre_archivo='proyeccion_beta_des.csv',)
@@ -175,13 +176,13 @@ def render():
 
     with col_apalancamiento:
         if 'resultados_apalancamiento' in st.session_state and st.session_state['resultados_apalancamiento'] is not None:
-            promedios_apalancamiento = st.session_state['resultados_apalancamiento']['promedios']
+            resultados = st.session_state['resultados_apalancamiento']
 
 
             kpis_promedios = {
-                "Apalancamiento base": f"{promedios_apalancamiento['Base_anual']:.2f}%",
-                "Apalancamiento alto": f"{promedios_apalancamiento['Positivo_anual']:.2f}%",
-                "Apalancamiento bajo": f"{promedios_apalancamiento['Negativo_anual']:.2f}%"
+                "Base": f"{resultados['promedios']['Base']:.2f}%",
+                "Riesgo bajo": f"{resultados['promedios']['Negativo']:.2f}%",
+                "Riesgo alto": f"{resultados['promedios']['Positivo']:.2f}%",
             }
             
             components.display_kpi_resumen("Resumen: Valor de D/(D+E)", kpis_promedios)
@@ -210,26 +211,27 @@ def render():
 
 
             kpis_promedios = {
-                "bonos base": f"{promedios_bonos['Base']:.2f}%",
-                "bonos alto": f"{promedios_bonos['Positivo']:.2f}%",
-                "bonos bajo": f"{promedios_bonos['Negativo']:.2f}%"
+                "Base": f"{promedios_bonos['Base']:.2f}%",
+                "Bonos altos": f"{promedios_bonos['Positivo']:.2f}%",
+                "Bonos bajos": f"{promedios_bonos['Negativo']:.2f}%"
             }
             
-            components.display_kpi_resumen("Resumen: Valor de D/(D+E)", kpis_promedios)
+            components.display_kpi_resumen("Resumen: Valor de los bonos a 20 años en EUA", kpis_promedios)
 
         else:
-            st.write("Aún no se ha generado la simulación para D/(D+E).")
+            st.write("Aún no se ha generado la simulación para los bonos a 20 años.")
 
         if 'resultados_bonos' in st.session_state and st.session_state['resultados_bonos'] is not None:
             resultados_bonos = st.session_state['resultados_bonos']
 
             df_para_descarga = pd.DataFrame({
-                'bonos base': resultados_bonos['escenario_base'],
-                'bonos alto':resultados_bonos['escenario_positivo'],
-                'bonos bajo': resultados_bonos['escenario_negativo']
+                'Base': resultados_bonos['escenario_base'],
+                'Bonos altos':resultados_bonos['escenario_positivo'],
+                'Bonos bajos': resultados_bonos['escenario_negativo']
             })
             
             components.display_download_button(df_descarga=df_para_descarga, nombre_archivo='proyeccion_bonos_20_EUA.csv',)
 
         else:
             st.warning("Debes generar una proyección en la pestaña 'Proyección' para poder descargar los datos.")
+
