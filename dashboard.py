@@ -12,11 +12,58 @@ st.markdown("""
     .sidebar-submenu {
         margin-left: 1rem; /* Crea la sangría visual */
     }
+
+    /* Regla para Tablets y pantallas más pequeñas (< 992px) */
+    @media (max-width: 992px) {
+        /* Apila las columnas de st.columns para que no se amontonen */
+        div[data-testid="stHorizontalBlock"] {
+            flex-direction: column;
+        }
+        /* Opcional: Centra las columnas apiladas */
+        div[data-testid="stHorizontalBlock"] > div {
+            width: 100% !important;
+            margin: 0 auto;
+        }
+    }
+
+    /* Regla solo para Teléfonos Móviles (< 600px) */
+    @media (max-width: 600px) {
+        /* Reduce el tamaño de los títulos principales para que quepan mejor */
+        h1 {
+            font-size: 28px !important;
+        }
+        h2 {
+            font-size: 22px !important;
+        }
+        h3 {
+            font-size: 18px !important;
+        }
+    }
+    
+    /* Regla para Monitores MUY Anchos (> 1800px) */
+    @media (min-width: 1800px) {
+        /* Limita el ancho del contenedor principal para evitar que el texto
+           se estire demasiado, mejorando la legibilidad. */
+        .main .block-container {
+            max-width: 1600px;
+            margin: auto;
+        }
+    }
+    
+    /* Regla solo para Desktops y Laptops Estándar */
+    @media (min-width: 993px) and (max-width: 1799px) {
+        /* Estilos específicos para este rango irían aquí */
+        /* Por ejemplo, podrías querer un tamaño de fuente específico */
+        body {
+            font-size: 16px; /* 1rem, generalmente el tamaño por defecto */
+        }
+    }
+            
 </style>
 """, unsafe_allow_html=True)
 
 
-st.set_page_config(page_title="Dashboard de Proyecciones", layout="wide", page_icon="📊")
+st.set_page_config(page_title="Dashboard de Proyecciones", layout="wide")
 
 # Barra lateral con la navegación principal
 with st.sidebar:
@@ -138,4 +185,5 @@ if pagina_seleccionada == "CBS":
 
     # Llamamos a nuestra función central reutilizable
     pagina_cbs_central.render_cbs_segment(segment_key)
+
     
